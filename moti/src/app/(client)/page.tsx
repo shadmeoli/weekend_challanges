@@ -165,11 +165,13 @@ function HeroSection() {
             className="flex h-14 flex-row items-center justify-center space-x-2 bg-white px-8 text-black transition-all duration-300 ease-in-out hover:bg-red"
             text="Buy With Moti"
             location="/listing"
+            icon
           />
           <LinkButton
             className="flex h-14 flex-row items-center justify-center space-x-2 bg-white px-8 text-black transition-all duration-300 ease-in-out hover:bg-red"
             text="Sell With Moti"
             location="/listing"
+            icon
           />
         </div>
       </section>
@@ -353,7 +355,7 @@ function AdvertSection({ campaignTitle, carDetails }: AdvertSectionProps) {
             ))}
           </ul>
           <LinkButton
-            className="hover:bg-light absolute bottom-10 left-10 flex h-12 w-36 items-center justify-center bg-black text-white hover:text-black"
+            className="esae-in-out absolute bottom-10 left-10 flex h-12 w-36 items-center justify-center bg-black text-white transition-all duration-300 hover:bg-red hover:text-black"
             text="Buy Now"
             // the url to the specific order. attached with a trackin link on click
             location="/listing/offers/628162"
