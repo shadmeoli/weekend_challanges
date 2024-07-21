@@ -36,7 +36,7 @@ function CategoriesSection() {
           className="absolute inset-0 top-0 object-contain"
           alt="Hero"
         />
-        <h1 className="z-10 text-4xl uppercase text-white">sports</h1>
+        <h1 className="z-10 text-4xl uppercase text-white">suvs</h1>
         <LinkButton
           className="absolute bottom-4 right-4 flex flex-row items-center justify-center px-4 py-2 text-sm text-white transition-all duration-300 ease-in-out hover:bg-white/90 hover:bg-opacity-60 hover:text-black hover:backdrop-blur"
           text="View All"
@@ -51,7 +51,7 @@ function CategoriesSection() {
           className="absolute inset-0 top-0 object-contain"
           alt="Hero"
         />
-        <h1 className="z-10 text-4xl uppercase text-white">sports</h1>
+        <h1 className="z-10 text-4xl uppercase text-white">trucks</h1>
         <LinkButton
           className="absolute bottom-4 right-4 flex flex-row items-center justify-center px-4 py-2 text-sm text-white transition-all duration-300 ease-in-out hover:bg-white/90 hover:bg-opacity-60 hover:text-black hover:backdrop-blur"
           text="View All"
