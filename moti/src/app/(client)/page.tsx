@@ -147,6 +147,7 @@ export default function HomePage() {
       <VarietySection />
       <WhyusSection features={features} />
       <AdvertSection {...advertSection} />
+      <FooterSection />
     </main>
   );
 }
@@ -318,7 +319,7 @@ function AdvertSection({ campaignTitle, carDetails }: AdvertSectionProps) {
   const { name, sellingPoints, image } = carDetails;
 
   return (
-    <section className="flex h-[70vh] w-full flex-col items-center justify-center space-y-10">
+    <section className="flex h-[60vh] w-full flex-col items-center justify-center space-y-10">
       {/* this will be the advert title that should be dynamic  */}
       <h1 className="text-5xl">{campaignTitle}</h1>
       <div className="bg-base relative flex h-[100vh] w-[70vw] flex-col items-center justify-between rounded-2xl p-6 md:flex-row">
@@ -369,6 +370,72 @@ function AdvertSection({ campaignTitle, carDetails }: AdvertSectionProps) {
           />
         </div>
       </div>
+    </section>
+  );
+}
+
+function FooterSection() {
+  return (
+    <section className="bg-base relative h-96 w-full p-10 font-primary">
+      <div className="flex flex-col items-center justify-between space-x-40 md:flex-row">
+        <div className="flex items-center justify-center">
+          <Link href="/">
+            <Image
+              className="object-contain"
+              alt="logo"
+              height={180}
+              width={180}
+              src="/logo.png"
+            />
+          </Link>
+          <div>
+            <h1 className="text-3xl uppercase">Moti</h1>
+            <p className="w-60 text-balance text-sm">
+              Your trusted source for a wide variety of cars.
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-1 flex-col space-y-6 md:flex-row md:space-x-20 md:space-y-0">
+          {/* navigation links */}
+          <div className="flex flex-col items-start">
+            <h1>Navigation Links</h1>
+            <Link className="text-base_gray mt-6" href="/">
+              Home
+            </Link>
+            <Link className="text-base_gray" href="/">
+              Listing
+            </Link>
+            <Link className="text-base_gray" href="/">
+              About Us
+            </Link>
+            <Link className="text-base_gray" href="/">
+              Profile
+            </Link>
+          </div>
+          {/* legals */}
+          <div className="flex flex-col items-start">
+            <h1>Legals</h1>
+            <Link className="text-base_gray mt-6" href="/">
+              Privacy Policy
+            </Link>
+            <Link className="text-base_gray" href="/">
+              Terms Of Service
+            </Link>
+            <Link className="text-base_gray" href="/">
+              Return Policy
+            </Link>
+          </div>
+        </div>
+        <div className="flex flex-col items-end">
+          <h1>Contact Information</h1>
+          <p className="text-base_gray mt-6">info@moti.co.ke</p>
+          <p className="text-base_gray">+254 769 000 420</p>
+          <p className="text-base_gray">Some Place - In Nairobi</p>
+        </div>
+      </div>
+      <p className="text-base_gray absolute bottom-6 right-[50%]">
+        &copy; 2024 - Moti Kenya
+      </p>
     </section>
   );
 }
