@@ -1,6 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
 
+interface AdvertSectionProps {
+  campaignTitle: string;
+  carDetails: {
+    name: string;
+    sellingPoints: string[];
+    image: string;
+  };
+}
+
 interface Features {
   title: string;
   description: string;
@@ -114,12 +123,30 @@ export default function HomePage() {
     },
   ];
 
+  const advertSection = {
+    campaignTitle: "End month offer 20% - off",
+    carDetails: {
+      name: "Audi Q8",
+      sellingPoints: [
+        "21-inch alloy wheels with optional 22-inch upgrade",
+        "Eight-speed automatic transmission",
+        "Matrix-design LED headlights",
+        "Quattro all-wheel drive system",
+        "Lane departure warning",
+        "Split-folding rear seats",
+        "Premium leather seating",
+      ],
+      image: "/images/advert.png",
+    },
+  };
+
   return (
     <main className="h-auto space-y-48 font-primary">
       <HeroSection />
       <CategoriesSection />
       <VarietySection />
       <WhyusSection features={features} />
+      <AdvertSection {...advertSection} />
     </main>
   );
 }
@@ -173,6 +200,7 @@ function CategoriesSection() {
           className="absolute bottom-4 right-4 flex flex-row items-center justify-center px-4 py-2 text-sm text-white transition-all duration-300 ease-in-out hover:bg-white/90 hover:bg-opacity-60 hover:text-black hover:backdrop-blur"
           text="View All"
           location="/categories/sports"
+          icon
         />
       </div>
       <div className="relative flex h-60 w-96 flex-col items-start justify-center p-4">
@@ -188,6 +216,7 @@ function CategoriesSection() {
           className="absolute bottom-4 right-4 flex flex-row items-center justify-center px-4 py-2 text-sm text-white transition-all duration-300 ease-in-out hover:bg-white/90 hover:bg-opacity-60 hover:text-black hover:backdrop-blur"
           text="View All"
           location="/categories/sports"
+          icon
         />
       </div>
       <div className="relative flex h-60 w-96 flex-col items-start justify-center p-4">
@@ -203,6 +232,7 @@ function CategoriesSection() {
           className="absolute bottom-4 right-4 flex flex-row items-center justify-center px-4 py-2 text-sm text-white transition-all duration-300 ease-in-out hover:bg-white/90 hover:bg-opacity-60 hover:text-black hover:backdrop-blur"
           text="View All"
           location="/categories/sports"
+          icon
         />
       </div>
     </section>
@@ -238,6 +268,7 @@ function VarietySection() {
             className="absolute bottom-6 right-28 flex w-28 items-center justify-center bg-lime p-2 transition-all duration-300 ease-in-out hover:bg-black hover:text-white"
             text="View All"
             location="/aboutus"
+            icon
           />
         </div>
         <div className="w-full md:w-[40vw]">
@@ -283,35 +314,102 @@ function WhyusSection({ features }: WhyusProps) {
   );
 }
 
+function AdvertSection({ campaignTitle, carDetails }: AdvertSectionProps) {
+  const { name, sellingPoints, image } = carDetails;
+
+  return (
+    <section className="flex h-[70vh] w-full flex-col items-center justify-center space-y-10">
+      {/* this will be the advert title that should be dynamic  */}
+      <h1 className="text-5xl">{campaignTitle}</h1>
+      <div className="bg-base relative flex h-[100vh] w-[70vw] flex-col items-center justify-between rounded-2xl p-6 md:flex-row">
+        <div className="flex h-full w-[50vw] flex-col p-4">
+          {/* car name */}
+          <h1 className="text-4xl">{name}</h1>
+          <ul className="space-y-2 p-4">
+            {sellingPoints.map((sellingPoint, index) => (
+              <li
+                key={index}
+                className="text-base_gray flex flex-row items-start space-x-3"
+              >
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                    />
+                  </svg>
+                </span>
+                <p className="w-96 text-balance">{sellingPoint}</p>
+              </li>
+            ))}
+          </ul>
+          <LinkButton
+            className="hover:bg-light absolute bottom-10 left-10 flex h-12 w-36 items-center justify-center bg-black text-white hover:text-black"
+            text="Buy Now"
+            // the url to the specific order. attached with a trackin link on click
+            location="/listing/offers/628162"
+          />
+        </div>
+        <div className="h-full w-[60vw]">
+          <Image
+            // add domain to allowed domain for using the imaes url directly
+            src={image}
+            height={800}
+            width={1920}
+            className="object-rights h-full w-full object-contain"
+            alt="Hero"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 interface LinkButtonProps {
   text: string;
   className: string;
   location: string;
-  target?: boolean;
+  icon?: boolean;
 }
 
-function LinkButton({ text, className, location, target }: LinkButtonProps) {
-  return (
-    <Link href={location} className={className}>
-      <span>{text}</span>
-      <span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="size-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
-          />
-        </svg>
-      </span>
-    </Link>
-  );
+function LinkButton({ text, className, location, icon }: LinkButtonProps) {
+  if (icon) {
+    return (
+      <Link href={location} className={className}>
+        <span>{text}</span>
+        <span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
+            />
+          </svg>
+        </span>
+      </Link>
+    );
+  } else {
+    return (
+      <Link href={location} className={className}>
+        {text}
+      </Link>
+    );
+  }
 }
 
 function Navbar() {

@@ -23,6 +23,7 @@ const config = {
         blue: "#3C91E6",
         red: "#F15025",
         base: "#FAFAFA",
+        base_gray: "#686868",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
