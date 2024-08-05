@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Navbar from "@/components/narbar";
 
 interface AdvertSectionProps {
   campaignTitle: string;
@@ -155,9 +156,9 @@ export default function HomePage() {
 function HeroSection() {
   return (
     <section className="relative flex h-[80vh] w-full flex-col items-start justify-center overflow-hidden bg-black">
-      <Navbar />
+      <Navbar variant={"transparent"} />
       <section className="z-10 p-20">
-        <h1 className="z-10 w-[65vw] font-primary text-8xl font-light text-white">
+        <h1 className="z-10 w-[75rem] font-primary text-8xl font-light text-white">
           Experience is everything with Moti
         </h1>
         <div className="flex flex-row items-center justify-start space-x-4">
@@ -178,9 +179,9 @@ function HeroSection() {
 
       <Image
         src="/images/hero.jpg"
-        height={800}
+        height={1080}
         width={1920}
-        className="absolute top-0 object-contain opacity-60"
+        className="absolute top-0 h-auto w-[100vw] object-contain opacity-60"
         alt="Hero"
       />
     </section>
@@ -299,7 +300,7 @@ function WhyusSection({ features }: WhyusProps) {
       <div className="flex w-[60vw] flex-wrap items-center justify-center gap-4">
         {features.map((feature, index) => (
           <div
-            className="bg-base flex h-48 w-80 flex-col items-start justify-start space-y-4 rounded-2xl p-2 p-6"
+            className="flex h-48 w-80 flex-col items-start justify-start space-y-4 rounded-2xl bg-base p-2 p-6"
             key={index}
           >
             <span className="flex flex-row items-center space-x-2">
@@ -324,7 +325,7 @@ function AdvertSection({ campaignTitle, carDetails }: AdvertSectionProps) {
     <section className="flex h-[60vh] w-full flex-col items-center justify-center space-y-10">
       {/* this will be the advert title that should be dynamic  */}
       <h1 className="text-5xl">{campaignTitle}</h1>
-      <div className="bg-base relative flex h-[100vh] w-[70vw] flex-col items-center justify-between rounded-2xl p-6 md:flex-row">
+      <div className="relative flex h-[100vh] w-[70vw] flex-col items-center justify-between rounded-2xl bg-base p-6 md:flex-row">
         <div className="flex h-full w-[50vw] flex-col p-4">
           {/* car name */}
           <h1 className="text-4xl">{name}</h1>
@@ -332,7 +333,7 @@ function AdvertSection({ campaignTitle, carDetails }: AdvertSectionProps) {
             {sellingPoints.map((sellingPoint, index) => (
               <li
                 key={index}
-                className="text-base_gray flex flex-row items-start space-x-3"
+                className="flex flex-row items-start space-x-3 text-base_gray"
               >
                 <span>
                   <svg
@@ -378,7 +379,7 @@ function AdvertSection({ campaignTitle, carDetails }: AdvertSectionProps) {
 
 function FooterSection() {
   return (
-    <section className="bg-base relative h-96 w-full p-10 font-primary">
+    <section className="relative h-96 w-full bg-base p-10 font-primary">
       <div className="flex flex-col items-center justify-between space-x-40 md:flex-row">
         <div className="flex items-center justify-center">
           <Link href="/">
@@ -401,7 +402,7 @@ function FooterSection() {
           {/* navigation links */}
           <div className="flex flex-col items-start">
             <h1>Navigation Links</h1>
-            <Link className="text-base_gray mt-6" href="/">
+            <Link className="mt-6 text-base_gray" href="/">
               Home
             </Link>
             <Link className="text-base_gray" href="/">
@@ -417,7 +418,7 @@ function FooterSection() {
           {/* legals */}
           <div className="flex flex-col items-start">
             <h1>Legals</h1>
-            <Link className="text-base_gray mt-6" href="/">
+            <Link className="mt-6 text-base_gray" href="/">
               Privacy Policy
             </Link>
             <Link className="text-base_gray" href="/">
@@ -430,12 +431,12 @@ function FooterSection() {
         </div>
         <div className="flex flex-col items-end">
           <h1>Contact Information</h1>
-          <p className="text-base_gray mt-6">info@moti.co.ke</p>
+          <p className="mt-6 text-base_gray">info@moti.co.ke</p>
           <p className="text-base_gray">+254 769 000 420</p>
           <p className="text-base_gray">Some Place - In Nairobi</p>
         </div>
       </div>
-      <p className="text-base_gray absolute bottom-6 right-[50%]">
+      <p className="absolute bottom-6 right-[50%] text-base_gray">
         &copy; 2024 - Moti Kenya
       </p>
     </section>
@@ -479,49 +480,4 @@ function LinkButton({ text, className, location, icon }: LinkButtonProps) {
       </Link>
     );
   }
-}
-
-function Navbar() {
-  return (
-    <section className="absolute top-0 z-10 flex h-20 w-full flex-row items-center justify-between px-20 py-10 font-primary">
-      <Link href="/">
-        <Image
-          className="object-contain"
-          alt="logo"
-          height={60}
-          width={60}
-          src="/logo.png"
-        />
-      </Link>
-      <div className="space-x-8 font-primary">
-        <Link
-          className="text-lg text-white transition-all duration-200 ease-linear hover:text-red"
-          href="/signup"
-        >
-          Home
-        </Link>
-        <Link
-          className="text-lg text-white transition-all duration-200 ease-linear hover:text-red"
-          href="/signup"
-        >
-          Listings
-        </Link>
-        <Link
-          className="text-lg text-white transition-all duration-200 ease-linear hover:text-red"
-          href="/signup"
-        >
-          About Us
-        </Link>
-        <Link
-          className="text-lg text-white transition-all duration-200 ease-linear hover:text-red"
-          href="/signup"
-        >
-          Contact
-        </Link>
-      </div>
-      <Link className="text-white" href="/api/auth/signin">
-        Sign Up
-      </Link>
-    </section>
-  );
 }
