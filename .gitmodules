@@ -1,0 +1,3 @@
+[submodule "LaTexEditor"]
+	path = LaTexEditor
+	url = git@github.com:shadmeoli/LaTexEditor.git
